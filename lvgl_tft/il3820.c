@@ -242,15 +242,7 @@ void il3820_set_absolute_px(lv_disp_drv_t * disp_drv, uint8_t* buf,
 
 /* Required by LVGL */
 void il3820_rounder(lv_disp_drv_t * disp_drv, lv_area_t *area) {
-#if defined (CONFIG_LV_DISPLAY_ORIENTATION_LANDSCAPE) || defined (CONFIG_LV_DISPLAY_ORIENTATION_LANDSCAPE_INVERTED)
-    area->x1 = area->x1 & ~(0x7);
-    area->x2 = area->x2 |  (0x7);
-#elif defined (CONFIG_LV_DISPLAY_ORIENTATION_PORTRAIT) || defined (CONFIG_LV_DISPLAY_ORIENTATION_PORTRAIT_INVERTED)
-    area->y1 = area->y1 & ~(0x7);
-    area->y2 = area->y2 |  (0x7);
-#else
-#error "Unsupported orientation used"
-#endif
+    /* Round not required, update partial area in full screen */
 }
 
 /* main initialization routine */
